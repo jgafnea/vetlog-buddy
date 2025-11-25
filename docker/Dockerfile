@@ -3,15 +3,10 @@ FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 WORKDIR /app
 
 # Copy project files
-COPY \
-	pyproject.toml \
-	uv.lock \
-	.env \
-	./
+COPY pyproject.toml uv.lock ./
 
-# TODO: 
-# COPY src/ ./src/
-COPY py_vetlog_analyzer/ ./py_vetlog_analyzer/
+# Copy code and tests
+COPY src/ ./src/
 COPY tests/ ./tests/
 
 # Install dependencies using uv

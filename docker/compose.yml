@@ -7,9 +7,11 @@ services:
       mysql:
         condition: service_healthy
     environment:
+      # HOST here should match the service (mysql)
       - DATABASE_HOST=mysql
       - DATABASE_PORT=3306
       - DATABASE_NAME=vetlog
+      # Used by init.sql
       - DATABASE_USER=vetlog_user
       - DATABASE_PASSWORD=vetlog_password
 
@@ -20,7 +22,7 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      # MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: vetlog
       # MYSQL_USER: test_user
       # MYSQL_PASSWORD: test_password
