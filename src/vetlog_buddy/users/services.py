@@ -8,15 +8,21 @@ class UserService:
 
     def is_invalid(self, user) -> bool:
         """Check if user is invalid using logic from filter_username"""
-        if len(user.username) == 0:
-            return True
-        if user.username.isupper():
-            return True
-        if len(user.username) < 8:
-            return True
-        if user.uppercase_count / len(user.username) < self.factor:
-            return True
 
+        # alias username
+        username = user.username
+        if not username:
+            # empty string
+            return True
+        if username.isupper():
+            # all uppercase
+            return True
+        if len(username) < 8:
+            # too short
+            return True
+        if user.uppercase_ratio < self.factor:
+            # too many uppercase
+            return True
         return False
 
     def remove_invalid(self) -> int:
