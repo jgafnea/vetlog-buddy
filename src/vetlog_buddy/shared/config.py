@@ -15,7 +15,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    database_url: str | None = None
+    database_url: str = ""
     factor: float = 0.5
 
     class Config:

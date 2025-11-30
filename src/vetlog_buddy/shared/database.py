@@ -14,7 +14,7 @@ from sqlmodel import Session, create_engine
 
 from vetlog_buddy.shared.config import settings
 
-engine = create_engine(str(settings.database_url), echo=False, pool_pre_ping=True)
+engine = create_engine(settings.database_url, echo=False, pool_pre_ping=True)
 
 
 def get_session():
