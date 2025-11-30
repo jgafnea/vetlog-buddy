@@ -10,45 +10,45 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License
-from datetime import datetime
+from datetime import UTC, datetime
 
 from sqlmodel import Field, SQLModel
 
-"""
-Schema taken from CI
-
-Replaces
-database_connector.py
-database_filter.py
-filter_username.py
-suspicious_username.py
-user_filter.py
-user_remover.py
-"""
-
 
 class User(SQLModel, table=True):
-    # __tablename__ = "user"
     id: int = Field(default=None, primary_key=True)
+
+    # flags
     account_non_expired: bool
     account_non_locked: bool
     credentials_non_expired: bool
-    date_created: datetime
-    email: str | None = None
     enabled: bool
-    first_name: str | None = None
-    last_name: str | None = None
-    mobile: str | None = None
+
+    # timestamps
+    date_created: datetime = Field(default_factory=lambda: datetime.now(UTC))
+
+    # personal
+    first_name: str | None = Field(default=None)
+    last_name: str | None = Field(default=None)
+    email: str | None = Field(default=None)
+    mobile: str | None = Field(default=None)
+    username: str = Field(index=True, unique=True, nullable=False)
+
+    # auth
     password: str
     role: str
-    username: str
 
     @property
     def uppercase_count(self) -> int:
-        """Number of uppercase characters in username"""
         return sum(1 for char in self.username if char.isupper())
 
     @property
     def uppercase_ratio(self) -> float:
-        """Ratio of uppercase characters in username"""
         return self.uppercase_count / len(self.username)
+
+    # This probably belongs here, but I want to keep the two (invalid/suspicous) checks together
+
+    # @property
+    # def suspicious(self) -> bool:
+    #     """Detects if the username is suspicious based on uppercase ratio"""
+    #     return 0.2 < self.uppercase_ratio <= 0.5

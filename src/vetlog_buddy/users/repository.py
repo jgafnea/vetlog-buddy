@@ -16,7 +16,6 @@ class UserRepository:
         return user
 
     def select_all(self) -> Sequence[User]:
-        # return list(self.session.exec(select(User)).all())
         return self.session.exec(select(User)).all()
 
     def select_username(self, username: str) -> User | None:
