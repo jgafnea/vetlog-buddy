@@ -273,6 +273,18 @@ wheels = [
 ]
 
 [[package]]
+name = "pysqlmodel"
+version = "1.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pymysql" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/06/72/8a861725f3d977c4b4d3614d223f501e9b1ac99d6c44e4d46e2f013363c1/pysqlmodel-1.2.0.tar.gz", hash = "sha256:df07785fb1c38cdea96184fbad10bc6e8f6f8d03dd3b311204187222a407bb8e", size = 10870, upload-time = "2025-01-14T09:51:16.755Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/02/f7/5a438cf725eada0c897a11b3bf125878e0e74f8bb515b0699bfe992fb7c0/PySQLModel-1.2.0-py3-none-any.whl", hash = "sha256:903ce0553129df387f1049f5148e5ff09e4e9b1142768a49cdcbc8e5f8ffa751", size = 12048, upload-time = "2025-01-14T09:51:14.399Z" },
+]
+
+[[package]]
 name = "pytest"
 version = "9.0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -354,6 +366,7 @@ dependencies = [
     { name = "pydantic-settings" },
     { name = "pymox" },
     { name = "pymysql" },
+    { name = "pysqlmodel" },
     { name = "pytest" },
     { name = "python-dotenv" },
     { name = "ruff" },
@@ -366,6 +379,7 @@ requires-dist = [
     { name = "pydantic-settings", specifier = ">=2.12.0" },
     { name = "pymox", specifier = ">=1.4.1" },
     { name = "pymysql", specifier = ">=1.1.2" },
+    { name = "pysqlmodel", specifier = ">=1.2.0" },
     { name = "pytest", specifier = ">=9.0.1" },
     { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "ruff", specifier = ">=0.14.5" },
