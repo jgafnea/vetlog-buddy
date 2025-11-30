@@ -12,9 +12,20 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License
 
+from vetlog_buddy.shared.database import get_session
+from vetlog_buddy.users.repository import UserRepository
+from vetlog_buddy.users.services import UserService
+
 from . import __project__, __version__
 from .database_filter import Filter
 from .database_filter_pets import PetFilter
+
+
+def list_suspicious():
+    session = next(get_session())
+    repo = UserRepository(session)
+    service = UserService(repo)
+    service.list_suspicious()
 
 
 def flter_by_username():
@@ -29,8 +40,8 @@ def flter_by_last_name():
     Filter().filter_users(12)
 
 
-def suggest():
-    Filter().suspicious_usernames()
+# def suggest():
+#     Filter().suspicious_usernames()
 
 
 def vaccines():
